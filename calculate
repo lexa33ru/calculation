@@ -1,0 +1,39 @@
+
+def check(value):
+    if len(value) == 3:
+        number, number2 = float(value[0]), float(value[2])
+        if number.is_integer() and number2.is_integer():
+            return True
+        else:
+            raise ValueError('throws Exception')
+    else:
+        raise ValueError('//т.к. строка не является математической операцией')
+
+
+def calculation(value):
+    if value[1] == '+':
+        return int(value[0]) + int(value[2])
+    elif value[1] == '*':
+        return int(value[0]) * int(value[2])
+    elif value[1] == '-':
+        return int(value[0]) - int(value[2])
+    elif value[1] == '/':
+        return int(int(value[0]) / int(value[2]))
+    else:
+        raise ValueError('//т.к. формат математической операции не удовлетворяет заданию - два операнда и один оператор (+, -, /, *)')
+
+def main(value):
+    try:
+        value = value.split()
+        check(value)
+        result = calculation(value)
+    except ValueError as e:
+        result = f"throws Exception: {e}"
+  
+    return str(result)
+
+while True:
+    x = main(input("Введите символы через пробел: "))
+    print(x)
+    if x.startswith("throws Exception"):
+        break
